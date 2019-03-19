@@ -1,0 +1,23 @@
+buildPack: none
+pipelineConfig:
+  pipelines:
+    pullRequest:
+      pipeline:
+        agent:
+          image: gcr.io/jenkinsxio/builder-jx:0.1.289
+        stages:
+        - name: "continuous-integration:pull-request"
+          steps:
+          - command: make
+            args:
+            - build
+    release:
+      pipeline:
+        agent:
+          image: gcr.io/jenkinsxio/builder-jx:0.1.289
+        stages:
+        - name: "continuous-integration:release"
+          steps:
+          - command: make
+            args:
+            - build
